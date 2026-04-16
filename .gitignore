@@ -1,0 +1,33 @@
+# Python
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+.Python
+
+# Virtual environments
+.env
+.venv
+env/
+venv/
+
+# Jupyter
+.ipynb_checkpoints/
+
+# Distribution / packaging
+dist/
+build/
+*.egg-info/
+
+# HuggingFace model cache
+.cache/
+
+# Test sample images (keep folder structure, ignore actual cert files)
+tests/sample_images/*.pdf
+tests/sample_images/*.jpg
+tests/sample_images/*.jpeg
+tests/sample_images/*.png
+
+# OS
+.DS_Store
+Thumbs.db
