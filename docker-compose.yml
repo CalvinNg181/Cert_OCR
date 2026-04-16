@@ -1,0 +1,32 @@
+services:
+  cert-ocr:
+    build: .
+    image: cert-ocr:latest
+    container_name: cert-ocr
+    restart: unless-stopped
+    ports:
+      - "8000:8000"
+    volumes:
+      # Model cache persists across container rebuilds (~6GB download)
+      - hf-cache:/cache/huggingface
+    environment:
+      - HF_HOME=/cache/huggingface
+      - NVIDIA_VISIBLE_DEVICES=all
+      - NVIDIA_DRIVER_CAPABILITIES=compute,utility
+    deploy:
+      resources:
+        reservations:
+          devices:
+            - driver: nvidia
+              count: 1
+              capabilities: [gpu]
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:8000/health"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 120s   # model takes ~60s to load on first run
+
+volumes:
+  hf-cache:
+    driver: local

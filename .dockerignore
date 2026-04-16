@@ -1,0 +1,19 @@
+.git/
+__pycache__/
+*.pyc
+*.pyo
+
+# Test data — never bake certs into the image
+tests/
+
+# Local dev files
+.env
+.venv/
+*.egg-info/
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Docs
+*.md
